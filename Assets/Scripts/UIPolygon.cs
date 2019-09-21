@@ -9,7 +9,7 @@ namespace CustomUI
         public int Sides { get { return sides; } }
 
         [SerializeField, Range(3, 360)] private int sides = 3;
-        [SerializeField, Range(0, 360)] private float rotation;
+        [SerializeField] private float rotation;
         [SerializeField, Range(0f, 1f)] private float[] verticesDistance = new float[] { };
         [SerializeField, Range(0f, 1f)] private float filled;
         private List<Vector3> unfilledVertices = new List<Vector3>();
@@ -28,6 +28,18 @@ namespace CustomUI
                 verticesDistance[i] = value;
             }
 
+            SetVerticesDirty();
+        }
+
+        public void SetRotation(float rotation)
+        {
+            this.rotation += rotation;
+            SetVerticesDirty();
+        }
+
+        public void SetFilled(float filled)
+        {
+            this.filled = filled;
             SetVerticesDirty();
         }
 
@@ -71,7 +83,7 @@ namespace CustomUI
 
         private void DrawFilledMesh(VertexHelper vh, float degrees)
         {
-            vh.AddVert(rectTransform.anchoredPosition3D, color, new Vector2(0, 0));
+            vh.AddVert(Vector3.zero, color, new Vector2(0, 0));
             for (int i = 0; i < verticesDistance.Length; i++)
             {
                 Vector3 vertex = GetVertex(degrees, i);
@@ -129,7 +141,6 @@ namespace CustomUI
             x *= rectTransform.sizeDelta.x / 2 * verticesDistance[index];
             y *= rectTransform.sizeDelta.y / 2 * verticesDistance[index];
             Vector3 vertex = new Vector3(x, y, 0);
-            vertex += rectTransform.anchoredPosition3D;
             return vertex;
         }
     }
