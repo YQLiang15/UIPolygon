@@ -8,7 +8,7 @@
 
 - Inspector : 
 
-- ![image](https://github.com/YQLiang15/UIPolygon/blob/master/Inspector.PNG?raw=true)
+  ![image](https://github.com/YQLiang15/UIPolygon/blob/master/Inspector.PNG?raw=true)
 
 - Demo 01 :
 
